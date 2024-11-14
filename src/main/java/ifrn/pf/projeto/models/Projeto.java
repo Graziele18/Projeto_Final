@@ -56,4 +56,11 @@ public class Projeto {
 		this.dataNascimento = dataNascimento;
 	}
 
+	@Override
+	public String toString() {
+		return "Projeto [id=" + id + ", nome=" + nome + ", cartaoSus=" + cartaoSus + ", enfermidade=" + enfermidade + ", dataNascimento=" + dataNascimento + "]";
+	}
+	
+	
+
 }
