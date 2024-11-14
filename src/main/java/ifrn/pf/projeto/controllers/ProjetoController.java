@@ -15,7 +15,7 @@ public class ProjetoController {
 	
 	@RequestMapping("/projeto/form")
 	public String form() {
-		return "formProjeto";
+		return "projeto/formProjeto";
 	}
 	
 	@RequestMapping("/projeto")
@@ -24,7 +24,7 @@ public class ProjetoController {
 		System.out.println(projeto);
 		pr.save(projeto);
 		
-		return "projeto-adicionado";
+		return "projeto/projeto-adicionado";
 	}
 
 }
