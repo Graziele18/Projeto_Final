@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<title>Projeto Final</title>
+</head>
+<body>
+<div th:replace="~{menu :: menu}"></div>
+<div class="container">
+	<h1>Lista de pacientes</h1>
+	<table class="highlight">
+
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nome</th>
+					<th>Carta Do Sus</th>
+					<th>Enfermidade</th>
+					<th>Data de nascimento</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="e : ${projeto}">
+					<td th:text="${e.id}">1</td>
+					<td th:text="${e.nome}">Joao</td>
+					<td  th:text="${e.cartaoSus}">123456789</td>
+					<td  th:text="${e.enfermidade}">Febre</td>
+					<td  th:text="${e.dataNascimento}">25/08/2006</td>
+				</tr>
+			</tbody>
+		</table>
+</div>
+</body>
+</html>
