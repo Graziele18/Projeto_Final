@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+<style>
+body {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-color: #e0f7fa;
+}
+
+.brand-logo {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-left: 30px;
+}
+
+.brand-logo img {
+	height: 100px;
+	width: auto;
+	position: relative;
+	top: -15px;
+}
+
+h1 {
+	text-align: center;
+	font-family: masteries;
+}
+</style>
+<title>Projeto Final</title>
+</head>
+<body>
+	<div th:replace="~{menu :: menu}"></div>
+
+	<div class="container">
+
+		<h1>Lista de pacientes</h1>
+
+		<p th:if="${mensagemErro}" th:text="${mensagemErro}"></p>
+
+
+		<div class="row">
+			<div class="col s12">
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title">Ficha do Paciente</span>
+						<p>
+							<strong>Id: </strong><span th:text="${projeto.id}">1</span>
+						</p>
+						<p>
+							<strong>Nome: </strong><span th:text="${projeto.nome}">erica</span>
+						</p>
+						<p>
+							<strong>Cartão do Sus: </strong><span
+								th:text="${projeto.cartaoSus}">123456789</span>
+						</p>
+						<p>
+							<strong>Enfermidade: </strong><span
+								th:text="${projeto.enfermidade}">dor</span>
+						</p>
+						<p>
+							<strong>Data de Nascimento: </strong><span
+								th:text="${projeto.dataNascimento}">20/07/2009</span>
+						</p>
+						<p>
+							<strong>Endereço: </strong><span th:text="${projeto.endereco}">rua
+								joao campos</span>
+						</p>
+						<p>
+							<strong>Telefone: </strong><span th:text="${projeto.telefone}">840028922</span>
+						</p>
+						<p>
+							<strong>Horário: </strong><span th:text="${projeto.horario}">13:30</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12">
+				<div class="card blue-grey darke">
+					<div class="card-content white-text">
+						<span class="card-title">Adicionar Receita</span>
+						<form th:action="@{/projeto/{idProjeto}(idProjeto=${projeto.id})}"
+							method="post" th:object="${convidado}">
+							<div>
+								<input type="hidden" th:field="*{id}" readonly="readonly">
+							</div>
+							<div>
+								<label>CRM: </label> <input type="text" th:field="*{crm}">
+								<p th:errors="*{crm}"></p>
+							</div>
+							<div>
+								<label>Nome: </label> <input type="text" th:field="*{nome}">
+								<p th:errors="*{nome}"></p>
+							</div>
+							<div>
+								<label>Especialidade: </label> <input type="text"
+									th:field="*{especialidade}">
+								<p th:errors="*{especialidade}"></p>
+							</div>
+							<div>
+								<label>Receita: </label> <input type="text"
+									th:field="*{receita}">
+								<p th:errors="*{receita}"></p>
+
+							</div>
+							<div>
+								<button type="submit" class="btn">Salvar</button>
+								<button type="reset" class="btn">Limpar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s12">
+				<div class="card blue-grey darke">
+					<div class="card-content white-text">
+						<span class="card-title">Receita</span>
+						<table class="highlight">
+							<thead>
+								<tr>
+									<td>Id</td>
+									<td>CRM</td>
+									<td>Nome</td>
+									<td>Especialidade</td>
+									<td>Receita</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="c : ${convidados}">
+									<td th:text="${c.id}">1</td>
+									<td th:text="${c.crm}">21635163</td>
+									<td th:text="${c.nome}">Grazi</td>
+									<td th:text="${c.especialidade}">ginecologista</td>
+									<td th:text="${c.receita}">dipirona</td>
+									<td><a
+										th:href="@{/projeto/{idProjeto}/convidados/{idConvidado}/selecionar(idProjeto=${projeto.id}, idConvidado=${c.id})}"
+										class="btn-floating waves-effect waves-light"><i
+											class="material-icons">edit</i></a> <a
+										th:href="@{/projeto/detalhes/{id}/remover(id=${c.id})}"
+										class="btn-floating waves-effect waves-light"><i
+											class="material-icons">delete</i></a></td>
+											
+											
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

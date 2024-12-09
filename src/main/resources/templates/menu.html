@@ -2,17 +2,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <title>Projeto</title>
+<title>Projeto</title>
+<style>
+.nav-wrapper {
+	height: 80px;
+	line-height: 80px;
+}
+
+.nav-wrapper img {
+	height: 60px;
+	margin-top: 10px;
+}
+
+.nav-wrapper ul li a {
+	line-height: 80px;
+}
+</style>
 </head>
-<body>
-	<nav th:fragment="menu" >
-    <div class="nav-wrapper container">
-      <a href="#" class="brand-logo center">Logo</a>
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="/">nulo</a></li>
-        <li><a href="/projeto/form">Home</a></li>
-      </ul>
-    </div>
-  </nav>
+<body style="background-color: #b2ebf2">
+	<nav th:fragment="menu" class="cyan lighten-4" role="navigation">
+		<div class="nav-wrapper">
+
+			<a href="/" class="brand-logo"> <img src="/logo.png">
+			</a>
+
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a style="color: black" href="/"
+					class="btn-floating waves-effect waves-light"><i
+						class="material-icons">content_paste</i></a></li>
+				<li><a style="color: black" href="/projeto/form"
+					class="btn-floating waves-effect waves-light"><i
+						class="material-icons">person_add</i></a></li>
+			</ul>
+		</div>
+	</nav>
 </body>
 </html>
