@@ -4,12 +4,60 @@
 <meta charset="UTF-8">
 <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+<style>
+body {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-color: #e0f7fa;
+}
+
+.card-title {
+	display: inline-block;
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 18px;
+	width: auto;
+}
+
+.brand-logo {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-left: 30px;
+}
+
+.brand-logo img {
+	height: 100px;
+	width: auto;
+	position: relative;
+	top: -15px;
+}
+
+table {
+	background-color: #b2ebf2;
+}
+
+h1 {
+	text-align: center;
+	font-family: masteries;
+}
+</style>
+
 <title>Projeto Final</title>
 </head>
 <body>
 <div th:replace="~{menu :: menu}"></div>
 <div class="container">
+
 	<h1>Lista de pacientes</h1>
+	
+	<p th:if="${mensagem}" th:text="${mensagem}"></p>
+	
 	<table class="highlight">
 
 			<thead>
@@ -19,15 +67,25 @@
 					<th>Carta Do Sus</th>
 					<th>Enfermidade</th>
 					<th>Data de nascimento</th>
+					<th>Endereço</th>
+					<th>Telefone</th>
+					<th>Horário</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="e : ${projeto}">
-					<td th:text="${e.id}">1</td>
-					<td th:text="${e.nome}">Joao</td>
-					<td  th:text="${e.cartaoSus}">123456789</td>
-					<td  th:text="${e.enfermidade}">Febre</td>
-					<td  th:text="${e.dataNascimento}">25/08/2006</td>
+				<tr th:each="p : ${projeto}">
+					<td th:text="${p.id}">1</td>
+					<td><a th:href="@{/projeto/{id}(id=${p.id})}"><span th:text="${p.nome}">Joao</span></a></td>
+					<td th:text="${p.cartaoSus}">123456789</td>
+					<td th:text="${p.enfermidade}">Febre</td>
+					<td th:text="${#temporals.format(p.dataNascimento, 'dd/MM/yyyy')}">20/08/2017</td>
+					<td th:text="${p.endereco}">rua joao compos</td>
+					<td th:text="${p.telefone}">840028922</td>
+					<td th:text="${p.horario}">19:00</td>
+					<td>
+					    <a th:href="@{/projeto/{id}/selecionar(id=${p.id})}" class="btn-floating waves-effect waves-light"><i class="material-icons">edit</i></a>
+					    <a th:href="@{/projeto/{id}/remover(id=${p.id})}" class="btn-floating waves-effect waves-light"><i class="material-icons">delete</i></a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
